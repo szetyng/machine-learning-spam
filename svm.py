@@ -8,6 +8,8 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 from sklearn.linear_model import Perceptron
 from sklearn.svm import SVC
+from sklearn.svm import NuSVC
+from sklearn.neural_network import MLPClassifier
 
 import numpy as np
 
@@ -24,31 +26,53 @@ seed = 7
 scoring = 'accuracy' # ratio of correct predictions / total nr of instances
 X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
 
-# print("Training set has {} samples.".format(X_train.shape))
-# print("Testing set has {} samples.".format(X_validation.shape))
+# models = []
+# # models.append(('SVM', SVC(C=3, shrinking=False)))
+# models.append(('NN1', MLPClassifier(random_state=0)))
+# models.append(('NN2', MLPClassifier(random_state=0,hidden_layer_sizes=(200,))))
+# models.append(('NN3', MLPClassifier(random_state=0,activation='logistic')))
+# models.append(('NN4', MLPClassifier(random_state=0,activation='tanh')))
+# models.append(('NN5', MLPClassifier(random_state=0,alpha=0.001)))
 
-# fit_intercept should be True
-# try max_iter = 5000
-# evaluate each model in turn
+
+# # evaluate each model in turn
+# results = []
+# names = []
+# for name, model in models:
+# 	kfold = model_selection.KFold(n_splits=10, random_state=seed)
+# 	cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold, scoring=scoring)
+# 	results.append(cv_results)
+# 	names.append(name)
+# 	msg = "Validation error for %s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
+# 	print(msg)
+# 	model.fit(X_train, Y_train)
+# 	predictions = model.predict(X_validation)
+# 	print('Test error is ' + str(accuracy_score(Y_validation, predictions)))
+# 	print(confusion_matrix(Y_validation, predictions))
+# 	print(classification_report(Y_validation, predictions))
+
+
+
+
+
+# HERE
+
+
 models = []
 val_errors = []
 names = []
 cur_err = 0
-cur_clf = Perceptron()
+cur_clf = MLPClassifier(random_state=0)
 
-
-max_iteration = 5000
-alphas = [0, 0.0001, 0.001, 0.01, 0.1, 1, 10, 100]
-reg = ['l2', 'l1']
+alphas = [0, 0.0001, 0.001, 0.01, 0.1, 1, 10]
+act = ['identity', 'logistic', 'tanh', 'relu']
 # alphas = [10, 100, 1000, 5000]
 # reg = ['l2']
 
-
-
 i = 0
-for r_type in reg:
+for a in act:
 	for alp in alphas:
-		models.append(('P'+str(i), Perceptron(penalty=r_type,alpha=alp,max_iter=max_iteration)))
+		models.append(('NN'+str(i)+' '+a, MLPClassifier(random_state=0,activation=a,alpha=alp)))
 		i += 1
 
 for name, model in models:
@@ -68,22 +92,6 @@ predictions = cur_clf.predict(X_validation)
 print('Best model is:')
 print(cur_clf)
 print('With an accuracy score of: ' + str(accuracy_score(Y_validation, predictions)))
-print('Took ' + str(cur_clf.n_iter_) + ' iterations')
 print(confusion_matrix(Y_validation, predictions))
 print(classification_report(Y_validation, predictions))
-
-
-
-
-
-# current best
-# per = Perceptron(penalty='l1', alpha=0.01, fit_intercept=True, max_iter=1000, tol=None, shuffle=True, verbose=0, eta0=1.0, n_jobs=1, random_state=0, class_weight=None, warm_start=False, n_iter=None)
-# per.fit(X_train, Y_train)
-# predictions = per.predict(X_validation)
-# print(accuracy_score(Y_validation, predictions))
-# # print(per.score(X_validation, Y_validation))
-# print(confusion_matrix(Y_validation, predictions))
-# print(classification_report(Y_validation, predictions))
-#print(per.coef_)
-#print(per.n_iter_)
-#print(per.intercept_)
+print('Nr of iterations: ' + str(cur_clf.n_iter_))
