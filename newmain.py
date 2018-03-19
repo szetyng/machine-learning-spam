@@ -38,10 +38,10 @@ cur_clf = Perceptron()
 
 
 max_iteration = 5000
-alphas = [0, 0.0001, 0.001, 0.01, 0.1, 1, 10, 100]
-reg = ['l2', 'l1']
-# alphas = [10, 100, 1000, 5000]
-# reg = ['l2']
+# alphas = [0, 0.0001, 0.001, 0.01, 0.1, 1, 10, 100]
+# reg = ['l2', 'l1']
+alphas = [0.0001]
+reg = ['l1']
 
 
 
@@ -68,6 +68,8 @@ predictions = cur_clf.predict(X_validation)
 print('Best model is:')
 print(cur_clf)
 print('With an accuracy score of: ' + str(accuracy_score(Y_validation, predictions)))
+ytrained = cur_clf.predict(X_train)
+print('Training score: ' + str(accuracy_score(Y_train, ytrained)))
 print('Took ' + str(cur_clf.n_iter_) + ' iterations')
 print(confusion_matrix(Y_validation, predictions))
 print(classification_report(Y_validation, predictions))
