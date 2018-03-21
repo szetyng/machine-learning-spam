@@ -30,7 +30,7 @@ X_train, X_test, Y_train, Y_test = model_selection.train_test_split(X, Y, test_s
 #################### Cross-validation #################################
 
 k_cross = 10
-params = {'alpha': [0, 0.0001, 0.001, 0.01, 0.1, 1]}
+params = {'alpha': [0, 0.00001, 0.0001]}# , 0.001, 0.01]}
 #params = {'alpha': [0.0001, 0.001]}
 
 mod = Perceptron(penalty='l1',random_state=0, max_iter=5000)
