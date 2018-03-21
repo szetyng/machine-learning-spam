@@ -48,7 +48,7 @@ reg = ['l1']
 i = 0
 for r_type in reg:
 	for alp in alphas:
-		models.append(('P'+str(i), Perceptron(penalty=r_type,alpha=alp,max_iter=max_iteration)))
+		models.append(('P'+str(i), Perceptron(penalty=r_type,alpha=alp,max_iter=max_iteration, random_state=0)))
 		i += 1
 
 for name, model in models:
