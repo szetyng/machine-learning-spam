@@ -36,13 +36,14 @@ names = []
 cur_err = 0
 cur_clf = SVC()
 
-gammas = [0.00001, 0.0001, 0.001]
+#gammas = [0.00001, 0.0001, 0.001]
+gammas = [0.001]
 cvals = [1,10,100,1000]
 
 i = 0
 for cval in cvals:
 	for gamma in gammas:
-		models.append(('SVC deg2 w C:'+str(cval)+',gamma:'+str(gamma), SVC(C=cval,cache_size=1000,gamma=gamma,random_state=0,kernel='poly',degree=2)))
+		models.append(('SVC deg2 w C:'+str(cval)+',gamma:'+str(gamma), SVC(C=cval,cache_size=2000,gamma=gamma,random_state=0,kernel='poly',degree=2)))
 		i += 1
 
 for name, model in models:
@@ -78,7 +79,7 @@ cvals = [1,10,100,1000]
 i = 0
 for cval in cvals:
 	for gamma in gammas:
-		models.append(('SVC lin w C:'+str(cval), SVC(C=cval,cache_size=1000,random_state=0,kernel='linear')))
+		models.append(('SVC lin w C:'+str(cval), SVC(C=cval,cache_size=2000,random_state=0,kernel='linear')))
 		i += 1
 
 for name, model in models:
@@ -114,7 +115,7 @@ cvals = [1,10,100,1000]
 i = 0
 for cval in cvals:
 	for gamma in gammas:
-		models.append(('SVC deg4 w C:'+str(cval)+',gamma:'+str(gamma), SVC(C=cval,cache_size=1000,gamma=gamma,random_state=0,kernel='poly',degree=4)))
+		models.append(('SVC deg4 w C:'+str(cval)+',gamma:'+str(gamma), SVC(C=cval,cache_size=2000,gamma=gamma,random_state=0,kernel='poly',degree=4)))
 		i += 1
 
 for name, model in models:
@@ -150,7 +151,7 @@ cvals = [1,10,100,1000]
 i = 0
 for cval in cvals:
 	for gamma in gammas:
-		models.append(('SVC deg3 w C:'+str(cval)+',gamma:'+str(gamma), SVC(C=cval,cache_size=1000,gamma=gamma,random_state=0,kernel='poly',degree=3)))
+		models.append(('SVC deg3 w C:'+str(cval)+',gamma:'+str(gamma), SVC(C=cval,cache_size=2000,gamma=gamma,random_state=0,kernel='poly',degree=3)))
 		i += 1
 
 for name, model in models:

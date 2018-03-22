@@ -36,13 +36,17 @@ names = []
 cur_err = 0
 cur_clf = SVC()
 
-cvals = [1,10,100,1000]
+#gammas = [0.00001, 0.0001, 0.001]
+gammas = [0.000001, 0.00001, 0.0001, 0.001]
+cvals = [1000000,10000000]
 
 i = 0
 for cval in cvals:
-	models.append(('SVC with C: '+str(cval), SVC(C=cval,cache_size=2000,random_state=0,kernel='linear')))
-	i += 1
+	for gamma in gammas:
+		models.append(('SVC rbf:'+str(cval)+',gamma:'+str(gamma), SVC(C=cval,cache_size=2000,gamma=gamma,random_state=0,kernel='rbf')))
+		i += 1
 
+print('Looping')
 for name, model in models:
 	kfold = 10
 	cv_results = model_selection.cross_val_score(model, X_train, Y_train, cv=kfold, scoring=scoring)
@@ -56,28 +60,9 @@ for name, model in models:
 		cur_clf = model
 
 cur_clf.fit(X_train, Y_train)
-predictions = cur_clf.predict(X_validation)
+predictions = cur_clf.predict(X_test)
 print('Best model is:')
 print(cur_clf)
-print('With a test score of: ' + str(accuracy_score(Y_validation, predictions)))
+print('With a test score of: ' + str(cur_clf.score(X_test,Y_test)))
 ytrained = cur_clf.predict(X_train)
 print('Training score: ' + str(accuracy_score(Y_train, ytrained)))
-# print('Took ' + str(cur_clf.n_iter_) + ' iterations')
-# print(confusion_matrix(Y_validation, predictions))
-# print(classification_report(Y_validation, predictions))
-
-
-
-
-
-# current best
-# per = Perceptron(penalty='l1', alpha=0.01, fit_intercept=True, max_iter=1000, tol=None, shuffle=True, verbose=0, eta0=1.0, n_jobs=1, random_state=0, class_weight=None, warm_start=False, n_iter=None)
-# per.fit(X_train, Y_train)
-# predictions = per.predict(X_validation)
-# print(accuracy_score(Y_validation, predictions))
-# # print(per.score(X_validation, Y_validation))
-# print(confusion_matrix(Y_validation, predictions))
-# print(classification_report(Y_validation, predictions))
-#print(per.coef_)
-#print(per.n_iter_)
-#print(per.intercept_)

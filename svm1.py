@@ -36,14 +36,14 @@ X_train, X_test, Y_train, Y_test = model_selection.train_test_split(X, Y, test_s
 #################### Cross-validation #################################
 
 k_cross = 10
-params = 	{'gamma': [0.000001, 0.00001, 0.0001, 0.001], 'C': [10,100,1000], 'kernel': ['rbf']}
+#params = 	{'gamma': [0.000001, 0.00001, 0.0001, 0.001], 'C': [10,100,1000], 'kernel': ['rbf']}
 #			{'gamma': [0.00001, 0.0001, 0.001], 'C':[10,100,1000], 'kernel': ['poly']} ]
-# params = {'gamma': [0.0001, 0.001], 'C': [1,10,100], 'kernel': ['rbf']}
+params = {'gamma': [0.000001, 0.00001, 0.0001, 0.001], 'C': [10000,100000,1], 'kernel': ['rbf']}
 # params = {'gamma': [0.00001, 0.0001, 0.001], 'C':[10,100,1000], 'kernel': ['poly'], 'degree':[2]}
 # params = {'C': [1,10,100], 'kernel': ['linear']}
 # params = {'C': [1], 'kernel': ['linear']}
 
-clf = model_selection.GridSearchCV(SVC(cache_size=1000,random_state=0), param_grid=params,refit=True, cv=k_cross)
+clf = model_selection.GridSearchCV(SVC(cache_size=2000,random_state=0), param_grid=params,refit=True, cv=k_cross)
 clf.fit(X_train, Y_train)
 
 best_clf = clf.best_estimator_ # print
