@@ -56,10 +56,10 @@ for name, model in models:
 		cur_clf = model
 
 cur_clf.fit(X_train, Y_train)
-predictions = cur_clf.predict(X_validation)
+predictions = cur_clf.predict(X_test)
 print('Best model is:')
 print(cur_clf)
-print('With a test score of: ' + str(accuracy_score(Y_validation, predictions)))
+print('With a test score of: ' + str(cur_clf.score(X_test,Y_test)))
 ytrained = cur_clf.predict(X_train)
 print('Training score: ' + str(accuracy_score(Y_train, ytrained)))
 # print('Took ' + str(cur_clf.n_iter_) + ' iterations')
