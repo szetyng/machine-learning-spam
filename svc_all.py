@@ -22,7 +22,7 @@ Y = array[:,57]
 validation_size = 0.20 
 seed = 7
 scoring = 'accuracy' # ratio of correct predictions / total nr of instances
-X_train, X_test, Y_train, Y_test = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
+X_train, X_validation, Y_train, Y_validation = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
 
 # print("Training set has {} samples.".format(X_train.shape))
 # print("Testing set has {} samples.".format(X_validation.shape))
