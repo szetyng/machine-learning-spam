@@ -25,3 +25,4 @@ SVC(C=100000, cache_size=2000, class_weight=None, coef0=0.0,
 With a test score of: 0.9196525515743756
 Training score: 0.9451086956521739
 ```
+
