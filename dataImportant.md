@@ -25,11 +25,13 @@ Perceptron(alpha=0.0001, class_weight=None, eta0=1.0, fit_intercept=True,
 
 ## Performance
 For alpha = 0.0001:
+
 |Training error     |Cross-val error    | Test error    |
-|---|---|---|
+|-------------------|-------------------|---------------|
 |0.8940217391304348 |0.90461957         |0.8805646036916395|
 
 For alpha = 0.0001, the training errors for different random states:
+
 |Random state           |0                      |1                      |2                      |3          |
 |---|---|---|---|---|
 |                       |0.8940217391304348     |0.8983695652173913     |0.9241847826086956     |0.9125     |
@@ -74,11 +76,12 @@ SVC(C=100000, cache_size=2000, class_weight=None, coef0=0.0,
 
 ## Performance
 For C = 1 000 000, gamma = 1e-06
+
 |Training error     |Cross-val error    |Test error         |
 |---|---|---|
 |0.9548913043478261 |0.938855           |0.9163952225841476 |
 
-There are [308 310] support vectors
+There are [308 310] support vectors  
 Fit time for non-scaled RBF SVM is: 109.71337223052979
 
 # SVM RBF scaled
@@ -104,11 +107,12 @@ SVC(C=100000, cache_size=2000, class_weight=None, coef0=0.0,
 
 ## Performance
 For C = 100000, gamma = 0.0001
+
 |Training error     |Cross-val error    |Test error         |
 |---|---|---|
 |0.9611413043478261 |0.937498           |0.9381107491856677 |
 
-There are [306 301] support vectors, for each class.
+There are [306 301] support vectors, for each class.  
 The support vectors are of this shape (607, 57):
 
 Confusion matrix:
