@@ -77,7 +77,7 @@ SVC(C=100000, cache_size=2000, class_weight=None, coef0=0.0,
 ## Performance
 For C = 1 000 000, gamma = 1e-06
 
-|Training error     |Cross-val error    |Test error         |
+|Training score     |Cross-validation score    |Test score         |
 |---|---|---|
 |0.9548913043478261 |0.938855           |0.9163952225841476 |
 
