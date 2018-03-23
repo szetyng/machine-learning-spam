@@ -5,6 +5,11 @@
 - [SVM](#svm)
       - [Table for RBF SVM](#table-for-rbf-svm)
       - [RBF](#rbf)
+- [Raw data](#raw-data)
+      - [SVM polynomial degree 2](#svm-polynomial-degree-2)
+      - [SVM rbf](#svm-rbf)
+      - [SVM RBF scaled](#svm-rbf-scaled)
+      - [Perceptron scaled](#perceptron-scaled)
 # Perceptron:
 ## Table for perceptron
 
@@ -113,7 +118,7 @@ And the test error is
 |C\Gamma    |1e-08      |1e-07       |0.000001   |0.00001    |0.0001     |0.001      |
 |---|---|---|---|---|---|---|
 |10000000   |0.914397   |0.928257   |0.932602   |0.914394   |0.893753   |0.860611   |
-|1000000    |0.917119   |0.932058   |0.938855   |0.924722   |0.908963   |0.866043   |
+|1000 000    |0.917119   |0.932058   |**0.938855**|0.924722   |0.908963   |0.866043   |
 |100000     |0.883692   |0.922279   |0.934780   |0.933695   |0.912769   |0.875008   |
 |10000      |0.775004   |0.886137   |0.926083   |0.931519   |0.917659   |0.886146   |
 |1000       |0.735058   |0.785334   |0.89048913 |0.92065217 |0.91902174 |0.89592391 |
@@ -231,4 +236,184 @@ After training on the whole training data, the training error is
 0.9345108695652173
 And the test error is
 0.9011943539630836
+```
+
+# Raw data
+## SVM polynomial degree 2
+```
+SVC deg2 w C:1,gamma:1e-05: 0.690215 (0.016427)
+SVC deg2 w C:1,gamma:0.0001: 0.801080 (0.014320)
+SVC deg2 w C:1,gamma:0.001: 0.909773 (0.012914)
+```
+
+## SVM rbf
+```
+SVC rbf:10000,gamma:1e-06: 0.926083 (0.011606)
+SVC rbf:10000,gamma:1e-05: 0.931519 (0.010314)
+SVC rbf:10000,gamma:0.0001: 0.917659 (0.011167)
+SVC rbf:10000,gamma:0.001: 0.886146 (0.018858)
+SVC rbf:100000,gamma:1e-06: 0.934780 (0.008613)
+SVC rbf:100000,gamma:1e-05: 0.933695 (0.008354)
+SVC rbf:100000,gamma:0.0001: 0.912769 (0.009154)
+SVC rbf:100000,gamma:0.001: 0.875008 (0.016825)
+SVC rbf:1,gamma:1e-06: 0.705972 (0.019797)
+SVC rbf:1,gamma:1e-05: 0.727993 (0.019549)
+SVC rbf:1,gamma:0.0001: 0.757069 (0.018867)
+SVC rbf:1,gamma:0.001: 0.809503 (0.009675)
+Best model is:
+SVC(C=100000, cache_size=2000, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma=1e-06, kernel='rbf',
+  max_iter=-1, probability=False, random_state=0, shrinking=True,
+  tol=0.001, verbose=False)
+With a test score of: 0.9196525515743756
+Training score: 0.9451086956521739
+```
+SVM with more C's:
+```
+SVC rbf:1000000,gamma:1e-06: 0.938855 (0.008018)
+SVC rbf:1000000,gamma:1e-05: 0.924722 (0.009305)
+SVC rbf:1000000,gamma:0.0001: 0.908963 (0.015209)
+SVC rbf:1000000,gamma:0.001: 0.866043 (0.018327)
+SVC rbf:10000000,gamma:1e-06: 0.932602 (0.011615)
+SVC rbf:10000000,gamma:1e-05: 0.914394 (0.010827)
+SVC rbf:10000000,gamma:0.0001: 0.893753 (0.019105)
+SVC rbf:10000000,gamma:0.001: 0.860611 (0.020472)
+Best model is:
+SVC(**C=1000 000**, cache_size=2000, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, **gamma=1e-06**, kernel='rbf',
+  max_iter=-1, probability=False, random_state=0, shrinking=True,
+  tol=0.001, verbose=False)
+With a test score of: 0.9163952225841476
+Training score: **0.9548913043478261**
+```
+
+SVM with more gammas
+```
+SVC rbf:10000000,gamma:1e-08: 0.914397 (0.011660)
+SVC rbf:10000000,gamma:1e-07: 0.928257 (0.012187)
+SVC rbf:1000000,gamma:1e-08: 0.917119 (0.008002)
+SVC rbf:1000000,gamma:1e-07: 0.932058 (0.011763)
+SVC rbf:100000,gamma:1e-08: 0.883692 (0.012605)
+SVC rbf:100000,gamma:1e-07: 0.922279 (0.011634)
+SVC rbf:10000,gamma:1e-08: 0.775004 (0.013612)
+SVC rbf:10000,gamma:1e-07: 0.886137 (0.012237)
+SVC rbf:1000,gamma:1e-08: 0.735058 (0.014414)
+SVC rbf:1000,gamma:1e-07: 0.785334 (0.015061)
+SVC rbf:100,gamma:1e-08: 0.711684 (0.015023)
+SVC rbf:100,gamma:1e-07: 0.732884 (0.014195)
+SVC rbf:10,gamma:1e-08: 0.679075 (0.018185)
+SVC rbf:10,gamma:1e-07: 0.719831 (0.021452)
+SVC rbf:1,gamma:1e-08: 0.658423 (0.014710)
+SVC rbf:1,gamma:1e-07: 0.680428 (0.019907)
+Best model is:
+SVC(C=1000000, cache_size=2000, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma=1e-07, kernel='rbf',
+  max_iter=-1, probability=False, random_state=0, shrinking=True,
+  tol=0.001, verbose=False)
+With a test score of: 0.9196525515743756
+Training score: 0.9404891304347827
+```
+
+## SVM RBF scaled
+```
+SVC rbf C:10000000,gamma:1e-08: 0.907875 (0.014746)
+SVC rbf C:10000000,gamma:1e-07: 0.918201 (0.009414)
+SVC rbf C:10000000,gamma:1e-06: 0.916299 (0.011239)
+SVC rbf C:10000000,gamma:1e-05: 0.931786 (0.011080)
+SVC rbf C:10000000,gamma:0.0001: 0.921196 (0.012861)
+SVC rbf C:1000000,gamma:1e-08: 0.914939 (0.015895)
+SVC rbf C:1000000,gamma:1e-07: 0.913580 (0.012501)
+SVC rbf C:1000000,gamma:1e-06: 0.921465 (0.006737)
+SVC rbf C:1000000,gamma:1e-05: 0.935055 (0.008366)
+SVC rbf C:1000000,gamma:0.0001: 0.931519 (0.015610)
+SVC rbf C:100000,gamma:1e-08: 0.899722 (0.013822)
+SVC rbf C:100000,gamma:1e-07: 0.922594 (0.011712)
+SVC rbf C:100000,gamma:1e-06: 0.927988 (0.010549)
+SVC rbf C:100000,gamma:1e-05: 0.934235 (0.009663)
+SVC rbf C:100000,gamma:0.0001: 0.937498 (0.011603)
+SVC rbf C:10000,gamma:1e-08: 0.811679 (0.017298)
+SVC rbf C:10000,gamma:1e-07: 0.905430 (0.013174)
+SVC rbf C:10000,gamma:1e-06: 0.922277 (0.012387)
+SVC rbf C:10000,gamma:1e-05: 0.932606 (0.010387)
+SVC rbf C:10000,gamma:0.0001: 0.934510 (0.007926)
+SVC rbf C:1000,gamma:1e-08: 0.608424 (0.000559)
+SVC rbf C:1000,gamma:1e-07: 0.814669 (0.017701)
+SVC rbf C:1000,gamma:1e-06: 0.906246 (0.012794)
+SVC rbf C:1000,gamma:1e-05: 0.924179 (0.012585)
+SVC rbf C:1000,gamma:0.0001: 0.932877 (0.011434)
+Best model is:
+SVC(C=100000, cache_size=2000, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma=0.0001, kernel='rbf',
+  max_iter=-1, probability=False, random_state=0, shrinking=True,
+  tol=0.001, verbose=False)
+With a test score of: 0.9381107491856677
+Training score: 0.9611413043478261
+```
+
+MOARRR
+```
+SVC rbf C:10000000,gamma:0.001: 0.903256 (0.011962)
+SVC rbf C:10000000,gamma:0.01: 0.889673 (0.021819)
+SVC rbf C:1000000,gamma:0.001: 0.916844 (0.013895)
+SVC rbf C:1000000,gamma:0.01: 0.898095 (0.017803)
+SVC rbf C:100000,gamma:0.001: 0.924723 (0.012665)
+SVC rbf C:100000,gamma:0.01: 0.898905 (0.023188)
+SVC rbf C:10000,gamma:0.001: 0.931517 (0.015384)
+SVC rbf C:10000,gamma:0.01: 0.915482 (0.016683)
+SVC rbf C:1000,gamma:0.001: 0.936954 (0.012216)
+SVC rbf C:1000,gamma:0.01: 0.926079 (0.015687)
+Best model is:
+SVC(C=1000, cache_size=2000, class_weight=None, coef0=0.0,
+  decision_function_shape='ovr', degree=3, gamma=0.001, kernel='rbf',
+  max_iter=-1, probability=False, random_state=0, shrinking=True,
+  tol=0.001, verbose=False)
+With a test score of: 0.9359391965255157
+Training score: 0.9619565217391305
+```
+
+## Perceptron scaled
+```
+The best model for the perceptron is
+Perceptron(alpha=0, class_weight=None, eta0=1.0, fit_intercept=True,
+      max_iter=5000, n_iter=None, n_jobs=1, penalty='l1', random_state=0,
+      shuffle=True, tol=None, verbose=0, warm_start=False)
+It has the best cross-validation error/score, which is
+0.8986413043478261
+The entire cv_results:
+{'mean_fit_time': array([5.83175068, 5.4704551 , 6.00584443, 7.33051083, 7.2788177 ,
+       7.91346514, 8.46173687]), 'std_fit_time': array([0.23843888, 0.11458415, 0.70055534, 0.39029501, 0.28323448,
+       0.29479253, 0.48933741]), 'mean_score_time': array([0.00110271, 0.00029492, 0.0004005 , 0.0005353 , 0.00070844,
+       0.00055513, 0.00060847]), 'std_score_time': array([0.00202711, 0.00045059, 0.00037547, 0.0001567 , 0.00033339,
+       0.00015085, 0.00045262]), 'param_alpha': masked_array(data=[0, 1e-05, 0.0001, 0.001, 0.01, 0.1, 1],
+             mask=[False, False, False, False, False, False, False],
+       fill_value='?',
+            dtype=object), 'params': [{'alpha': 0}, {'alpha': 1e-05}, {'alpha': 0.0001}, {'alpha': 0.001}, {'alpha': 0.01}, {'alpha': 0.1}, {'alpha': 1}], 'split0_test_score': array([0.89701897, 0.90514905, 0.91869919, 0.89159892, 0.84552846,
+       0.78319783, 0.60704607]), 'split1_test_score': array([0.91576087, 0.91032609, 0.9048913 , 0.8125    , 0.875     ,
+       0.60869565, 0.60869565]), 'split2_test_score': array([0.89130435, 0.875     , 0.89130435, 0.87771739, 0.83423913,
+       0.82608696, 0.60869565]), 'split3_test_score': array([0.91576087, 0.91847826, 0.93206522, 0.92391304, 0.92119565,
+       0.61141304, 0.60869565]), 'split4_test_score': array([0.92391304, 0.89130435, 0.9048913 , 0.89130435, 0.81521739,
+       0.79619565, 0.60869565]), 'split5_test_score': array([0.92663043, 0.89130435, 0.88043478, 0.86413043, 0.82608696,
+       0.60869565, 0.60869565]), 'split6_test_score': array([0.88858696, 0.83695652, 0.86956522, 0.8451087 , 0.79347826,
+       0.60869565, 0.60869565]), 'split7_test_score': array([0.88586957, 0.87771739, 0.875     , 0.86413043, 0.86141304,
+       0.60869565, 0.39130435]), 'split8_test_score': array([0.89945652, 0.9076087 , 0.89130435, 0.85326087, 0.82336957,
+       0.70652174, 0.39130435]), 'split9_test_score': array([0.84196185, 0.89100817, 0.88010899, 0.8773842 , 0.8746594 ,
+       0.71934605, 0.60762943]), 'mean_test_score': array([0.8986413 , 0.89048913, 0.89483696, 0.8701087 , 0.84701087,
+       0.68777174, 0.56494565]), 'std_test_score': array([0.02352315, 0.02226172, 0.01907865, 0.02866534, 0.03506447,
+       0.08497428, 0.08682234]), 'rank_test_score': array([1, 3, 2, 4, 5, 6, 7]), 'split0_train_score': array([0.90456056, 0.88674117, 0.9063727 , 0.90154032, 0.86439142,
+       0.77620054, 0.60857747]), 'split1_train_score': array([0.91032609, 0.90942029, 0.90217391, 0.83333333, 0.87771739,
+       0.60839372, 0.60839372]), 'split2_train_score': array([0.92179952, 0.92783816, 0.92330918, 0.91878019, 0.83967391,
+       0.83967391, 0.60839372]), 'split3_train_score': array([0.91908213, 0.90398551, 0.91727053, 0.90428744, 0.88707729,
+       0.61020531, 0.60839372]), 'split4_train_score': array([0.91938406, 0.90126812, 0.90217391, 0.88677536, 0.8031401 ,
+       0.78743961, 0.60839372]), 'split5_train_score': array([0.91455314, 0.88164251, 0.89100242, 0.88073671, 0.79891304,
+       0.60839372, 0.60839372]), 'split6_train_score': array([0.90881643, 0.85295894, 0.87952899, 0.84752415, 0.80495169,
+       0.60839372, 0.60839372]), 'split7_train_score': array([0.87922705, 0.87439614, 0.88254831, 0.86322464, 0.84601449,
+       0.60839372, 0.39160628]), 'split8_train_score': array([0.88737923, 0.91062802, 0.8964372 , 0.85597826, 0.78834541,
+       0.7201087 , 0.39160628]), 'split9_train_score': array([0.89133716, 0.91367341, 0.90582554, 0.90552369, 0.87232116,
+       0.74916994, 0.60851192]), 'mean_train_score': array([0.90564653, 0.89625523, 0.90066427, 0.87977041, 0.83825459,
+       0.69163729, 0.56506643]), 'std_train_score': array([0.01406787, 0.02102878, 0.01318503, 0.02710362, 0.03496807,
+       0.08758632, 0.08673009])}
+After training on the whole training data, the training error is
+0.9133152173913044
+And the test error is
+0.8979370249728555
 ```

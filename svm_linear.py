@@ -1,5 +1,6 @@
 # Load libraries
 import pandas
+from sklearn import preprocessing
 from pandas.plotting import scatter_matrix
 import matplotlib.pyplot as plt
 from sklearn import model_selection
@@ -22,7 +23,19 @@ Y = array[:,57]
 validation_size = 0.20 
 seed = 7
 scoring = 'accuracy' # ratio of correct predictions / total nr of instances
-X_train, X_test, Y_train, Y_test = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
+X_tra, X_tes, Y_train, Y_test = model_selection.train_test_split(X, Y, test_size=validation_size, random_state=seed)
+
+scaler=preprocessing.StandardScaler().fit(X_tra)
+
+
+X_train = scaler.transform(X_tra)
+X_test = scaler.transform(X_tes)
+
+models = []
+val_errors = []
+names = []
+cur_err = 0
+cur_clf = SVC()
 
 # print("Training set has {} samples.".format(X_train.shape))
 # print("Testing set has {} samples.".format(X_validation.shape))
@@ -36,11 +49,11 @@ names = []
 cur_err = 0
 cur_clf = SVC()
 
-cvals = [1,10,100,1000]
+cvals = [0.01,0.1,1]
 
 i = 0
 for cval in cvals:
-	models.append(('SVC with C: '+str(cval), SVC(C=cval,cache_size=2000,random_state=0,kernel='linear')))
+	models.append(('SVC with C: '+str(cval), SVC(C=cval,cache_size=2000,random_state=0,kernel='linear',tol=0.01)))
 	i += 1
 
 for name, model in models:
