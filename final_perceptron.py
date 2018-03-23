@@ -8,6 +8,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 from sklearn.linear_model import Perceptron
 from sklearn.svm import SVC
+from time import time
 
 import numpy as np
 
@@ -32,7 +33,9 @@ X_test_scaled = scaler.transform(X_test)
 
 clf = Perceptron(alpha=0.0001,max_iter=5000, penalty='l1', random_state=0,)
 
+start = time()
 clf.fit(X_train_scaled, Y_train)
+duration = time() - start
 y = clf.predict(X_train_scaled)
 err_train = clf.score(X_train_scaled,Y_train)
 
@@ -46,3 +49,4 @@ print('Confusion matrix:')
 print(confusion_matrix(Y_test, yhat))
 print('\nClassification report:')
 print(classification_report(Y_test, yhat))
+print('Fit time for perceptron is: ' + str(duration)  )

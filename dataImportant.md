@@ -34,6 +34,20 @@ For alpha = 0.0001, the training errors for different random states:
 |---|---|---|---|---|
 |                       |0.8940217391304348     |0.8983695652173913     |0.9241847826086956     |0.9125     |
 
+Confusion matrix:
+[[502  47]
+ [ 69 303]]
+
+Classification report:
+             precision    recall  f1-score   support
+
+        0.0       0.88      0.91      0.90       549
+        1.0       0.87      0.81      0.84       372
+
+avg / total       0.87      0.87      0.87       921
+
+Fit time: 6.227154731750488 s
+
 # SVM - RBF kernel
 ## Cross-validation results
 |C\Gamma    |1e-08      |1e-07       |0.000001   |0.00001    |0.0001     |0.001      |
@@ -72,6 +86,8 @@ There are [308 310] support vectors
  [  1.17    0.      0.    ...   1.966  10.     59.   ]
  [  0.      0.      0.    ...   3.8    15.     19.   ]
  [  0.      0.51    0.    ...   2.614  66.    149.   ]]
+
+ Fit time for non-scaled RBF SVM is: 109.71337223052979
 
 # SVM RBF scaled
 ## Cross-validation errors
@@ -119,3 +135,17 @@ The support vectors are of this shape (607, 57):
 
     [-0.35063457  0.21560269 -0.55445953 ... -0.09692425  0.06958556
     -0.21942511]    ]
+
+Confusion matrix:
+[[525  24]
+ [ 33 339]]
+
+Classification report:
+             precision    recall  f1-score   support
+
+        0.0       0.94      0.96      0.95       549
+        1.0       0.93      0.91      0.92       372
+
+avg / total       0.94      0.94      0.94       921
+
+Fit time for scaled RBF SVM is: 2.790419578552246

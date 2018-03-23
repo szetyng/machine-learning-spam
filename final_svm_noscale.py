@@ -8,6 +8,7 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 from sklearn.linear_model import Perceptron
 from sklearn.svm import SVC
+from time import time
 
 import numpy as np
 
@@ -27,7 +28,9 @@ X_train, X_test, Y_train, Y_test = model_selection.train_test_split(X, Y, test_s
 
 clf = SVC(C=1000000, cache_size=2000,gamma=1e-06, kernel='rbf',random_state=0)
 
+start = time()
 clf.fit(X_train, Y_train)
+duration = time() - start
 y = clf.predict(X_train)
 err_train = clf.score(X_train,Y_train)
 
@@ -42,3 +45,4 @@ n = clf.n_support_
 
 print('There are ' + str(n) + ' support vectors')
 print(svs)
+print('Fit time for non-scaled RBF SVM is: ' + str(duration)  )
