@@ -1,0 +1,1 @@
+I downloaded the spambase dataset from the website and converted it into a csv file. Each column holds one type of input feature, and the last column is the output column. There are no headings added. It is named as "spambase.csv".
